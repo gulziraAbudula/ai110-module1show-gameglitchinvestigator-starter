@@ -5,9 +5,14 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+The game is full of glitches, it allows user to go out of range and the guess hints were not accurate. 
+1. the range was 1 to 100 but when I enter 111, it showed go higher.
+2. when I clicked start new game after first game attempt ran out, it did not start a new game. New game started after refreshing the page and all the previous records were gone.
+3. When I clicked submit Guess, sometimes it doesn't automatically submit it, after you click it the hint disappear and then it goes through. 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
-
+1. the range was 1 to 100 but when I enter 111, it showed go higher.
+2. when I clicked start new game after first game attempt ran out, it did not start a new game. New game started after refreshing the page and all the previous records were gone.
 ---
 
 ## 2. How did you use AI as a teammate?
