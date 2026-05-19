@@ -124,6 +124,8 @@ raw_guess = st.text_input(
     key=f"guess_input_{difficulty}"
 )
 
+#FIX: added key parameter to st.checkbox() - This ensures Streamlit maintains the checkbox state 
+# consistently across page reruns, so the hint will display reliably when the user clicks submit.
 col1, col2, col3 = st.columns(3)
 with col1:
     submit = st.button("Submit Guess 🚀")
