@@ -1,68 +1,7 @@
 import random
 import streamlit as st
+from logic_utils import get_range_for_difficulty, parse_guess, check_guess, update_score
 
-def get_range_for_difficulty(difficulty: str):
-    if difficulty == "Easy":
-        return 1, 20
-    if difficulty == "Normal":
-        return 1, 100
-    if difficulty == "Hard":
-        return 1, 50
-    return 1, 100
-
-
-def parse_guess(raw: str):
-    if raw is None:
-        return False, None, "Enter a guess."
-
-    if raw == "":
-        return False, None, "Enter a guess."
-
-    try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
-    except Exception:
-        return False, None, "That is not a number."
-
-    return True, value, None
-
-
-def check_guess(guess, secret):
-    if guess == secret:
-        return "Win", "🎉 Correct!"
-#FIX: when guess is greater than secret, the correct message is displaying "Too High"
-    try:
-        if guess > secret:
-            return "Too High", "📉 Go LOWER!"
-        else:
-            return "Too Low", "📈 Go HIGHER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📉 Go LOWER!"
-        return "Too Low", "📈 Go HIGHER!"
-
-
-def update_score(current_score: int, outcome: str, attempt_number: int):
-    if outcome == "Win":
-        points = 100 - 10 * (attempt_number + 1)
-        if points < 10:
-            points = 10
-        return current_score + points
-
-    if outcome == "Too High":
-        if attempt_number % 2 == 0:
-            return current_score + 5
-        return current_score - 5
-
-    if outcome == "Too Low":
-        return current_score - 5
-
-    return current_score
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -86,7 +25,6 @@ attempt_limit = attempt_limit_map[difficulty]
 
 low, high = get_range_for_difficulty(difficulty)
 
-#FIX: The range on the side bar is the same as the range on main page
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
@@ -94,7 +32,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 0
+    st.session_state.attempts = 1
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -107,11 +45,11 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
-#FIX: The range on the side bar is the same as the range on main page
 st.info(
-    f"Guess a number between {low} and {high}. "
+    f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
+
 with st.expander("Developer Debug Info"):
     st.write("Secret:", st.session_state.secret)
     st.write("Attempts:", st.session_state.attempts)
@@ -124,8 +62,6 @@ raw_guess = st.text_input(
     key=f"guess_input_{difficulty}"
 )
 
-#FIX: added key parameter to st.checkbox() - This ensures Streamlit maintains the checkbox state 
-# consistently across page reruns, so the hint will display reliably when the user clicks submit.
 col1, col2, col3 = st.columns(3)
 with col1:
     submit = st.button("Submit Guess 🚀")
@@ -134,7 +70,6 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True, key="show_hint")
 
-#FIX: added new game status to "playing", after a new game is clicked user is able to play again
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(low, high)
@@ -165,7 +100,15 @@ if submit:
         else:
             secret = st.session_state.secret
 
-        outcome, message = check_guess(guess_int, secret)
+        outcome = check_guess(guess_int, secret)
+
+        # Map outcome to user-friendly message
+        message_map = {
+            "Win": "🎉 Correct!",
+            "Too High": "📉 Go LOWER!",
+            "Too Low": "📈 Go HIGHER!"
+        }
+        message = message_map.get(outcome, "")
 
         if show_hint:
             st.warning(message)
