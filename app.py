@@ -130,7 +130,7 @@ with col1:
 with col2:
     new_game = st.button("New Game 🔁")
 with col3:
-    show_hint = st.checkbox("Show hint", value=True)
+    show_hint = st.checkbox("Show hint", value=True, key="show_hint")
 
 #FIX: added new game status to "playing", after a new game is clicked user is able to play again
 if new_game:
