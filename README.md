@@ -26,7 +26,7 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [X] Describe the game's purpose.
-This game challenges user to guess a number based on the difficulty level that the user picked, for each difficulty level the number range and allowed attempts are different. Once the user selects difficulty level, they can enter their guess based on the given range, if they guess it correctly, the success message is displayed and the total score is displayed, to restart the game, user has to click on restart to continue playing. if they guess it incorrectly within the attempts, the failure message is displayed and total score is also displayed, to restart the game, user needs to clicks on start new game.
+- This game challenges user to guess a number based on the difficulty level that the user picked, for each difficulty level the number range and allowed attempts are different. Once the user selects difficulty level, they can enter their guess based on the given range, if they guess it correctly, the success message is displayed and the total score is displayed, to restart the game, user has to click on restart to continue playing. if they guess it incorrectly within the attempts, the failure message is displayed and total score is also displayed, to restart the game, user needs to clicks on start new game.
 - [X] Detail which bugs you found.
 I identified four bugs: 
 1. The hint displayed was in backwards order.
