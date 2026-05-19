@@ -13,6 +13,7 @@ The game is full of glitches, it allows user to go out of range and the guess hi
   (for example: "the hints were backwards").
 1. the range was 1 to 100 but when I enter 111, it showed go higher.
 2. when I clicked start new game after first game attempt ran out, it did not start a new game. New game started after refreshing the page and all the previous records were gone.
+3. The Settings sidebar has three different levels and it explains how many attempts allowed and the range, whatever is shown on the sidebar is different than than on the main page. 
 ---
 
 ## 2. How did you use AI as a teammate?
