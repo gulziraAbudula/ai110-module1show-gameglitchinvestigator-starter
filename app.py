@@ -32,7 +32,7 @@ def parse_guess(raw: str):
 def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
-
+#FIX: when guess is greater than secret, the correct message is displaying "Too High"
     try:
         if guess > secret:
             return "Too High", "📉 Go LOWER!"
@@ -86,6 +86,7 @@ attempt_limit = attempt_limit_map[difficulty]
 
 low, high = get_range_for_difficulty(difficulty)
 
+#FIX: The range on the side bar is the same as the range on main page
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
@@ -93,7 +94,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -106,6 +107,7 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+#FIX: The range on the side bar is the same as the range on main page
 st.info(
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
@@ -130,6 +132,7 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
+#FIX: added new game status to "playing", after a new game is clicked user is able to play again
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(low, high)
