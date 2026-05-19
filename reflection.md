@@ -41,12 +41,14 @@ Yes, I asked Claude to be specific on creating the test cases, target on the fix
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
-
+Streamlit is a Python library that lets you build web apps with just Python — no HTML, CSS, or JavaScript needed.
+st.session_state persists values between reruns — like a memory for your app.
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
+
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.

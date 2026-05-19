@@ -40,7 +40,10 @@ I identified four bugs:
 4. I added `key="show_hint"` to the checkbox widget to ensure Streamlit preserves its state across reruns, preventing hints from flickering. 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [X] 
+<img src='/Screenshot 2026-05-19 at 12.08.05 PM.png' title='Go Higher img' width='' alt='image' />
+<img src='/Screenshot 2026-05-19 at 12.08.22 PM.png' title='Go Lower img' width='' alt='image' />
+<img src='/Screenshot 2026-05-19 at 12.08.34 PM.png' title='Success img' width='' alt='image' />
 
 ## 🚀 Stretch Features
 
